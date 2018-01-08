@@ -43,6 +43,33 @@ class TestTennis(unittest.TestCase):
         self.assertEqual(tennis.score(), '40:40')
         self.assertTrue(tennis.deuce_activated(), 'The deuce rule is activated')
 
+    def test_when_score_is_DEUCE_and_when_player_1_win_the_point_then_player_1_take_the_ADVANTAGE(self):
+        tennis = Tennis()
+        tennis.game = (3, 3)
+
+        tennis.player1_win_point()
+
+        self.assertEqual(tennis.score(), 'ADV:40')
+        self.assertTrue(tennis.deuce_activated(), 'The deuce rule is activated')
+
+    def test_when_the_player_who_has_the_ADVANTAGE_win_the_point_then_he_win_the_game(self):
+        tennis = Tennis()
+        tennis.game = (4, 3)
+
+        tennis.player1_win_point()
+
+        self.assertEqual(tennis.score(), 'WIN GAME:40')
+        self.assertFalse(tennis.deuce_activated(), 'The deuce rule is activated')
+
+    def test_when_the_player_who_has_the_ADVANTAGE_loose_the_point_then_the_score_is_DEUCE(self):
+        tennis = Tennis()
+        tennis.game = (4, 3)
+
+        tennis.player2_win_point()
+
+        self.assertEqual(tennis.score(), '40:40')
+        self.assertTrue(tennis.deuce_activated(), 'The deuce rule is activated')
+
 
 if __name__ == '__main__':
     unittest.main()
