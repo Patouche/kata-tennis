@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-SCORES = ('0', '15', '30', '40', 'WIN GAME')
+SCORES = ('0', '15', '30', '40', 'ADV', 'WIN GAME')
 
 
 class Tennis(object):
@@ -15,11 +15,18 @@ class Tennis(object):
 
     def _win_point(self, points):
         self.game = tuple(sum(i) for i in zip(self.game, points))
+        if self.game == (4, 4):
+            self.game = (3, 3)
+        if not self.deuce_activated() and 4 in self.game:
+            self._win_point(points=points)
 
     def player1_win_point(self):
         """Method to invoke when the player 1 win the point."""
-        self._win_point((1, 0))
+        self._win_point(points=(1, 0))
 
     def player2_win_point(self):
         """Method to invoke when the player 1 win the point."""
-        self._win_point((0, 1))
+        self._win_point(points=(0, 1))
+
+    def deuce_activated(self):
+        return self.game in ((3, 3), (3, 4), (4, 3))
