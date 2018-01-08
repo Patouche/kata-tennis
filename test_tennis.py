@@ -18,6 +18,8 @@ class TestTennis(unittest.TestCase):
         tennis.player2_win_point()
 
         self.assertEqual(tennis.score(), '15:15')
+        self.assertIsInstance(tennis.game, tuple)
+        self.assertEqual(tennis.game, (1, 1))
 
         tennis.player1_win_point()
         tennis.player2_win_point()
@@ -30,7 +32,7 @@ class TestTennis(unittest.TestCase):
 
         tennis.player1_win_point()
 
-        self.assertEqual(tennis.score(), 'WIN:30')
+        self.assertEqual(tennis.score(), 'WIN GAME:30')
 
 
 if __name__ == '__main__':

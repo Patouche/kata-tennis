@@ -8,13 +8,13 @@ class Tennis(object):
 
     def __init__(self):
         """Class constructor."""
-        self.game = (0, 0)
+        self.game = (0, 0)  # Player 1 at index 0, Player 2 at index 1
 
     def score(self):
-        return ':'.join(tuple(map(str, self.game)))
+        return ':'.join([SCORES[i] for i in self.game])
 
-    def _win_point(self, param):
-        pass
+    def _win_point(self, points):
+        self.game = tuple(sum(i) for i in zip(self.game, points))
 
     def player1_win_point(self):
         """Method to invoke when the player 1 win the point."""
