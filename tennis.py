@@ -25,4 +25,4 @@ class Tennis(object):
         self._win_point((0, 1))
 
     def deuce_activated(self):
-        pass
+        return self.game == (3, 3)
