@@ -34,6 +34,15 @@ class TestTennis(unittest.TestCase):
 
         self.assertEqual(tennis.score(), 'WIN GAME:30')
 
+    def test_2_players_reach_the_score_40_then_the_DEUCE_rule_is_activated(self):
+        tennis = Tennis()
+        tennis.game = (3, 2)
+
+        tennis.player2_win_point()
+
+        self.assertEqual(tennis.score(), '40:40')
+        self.assertTrue(tennis.deuce_activated(), 'The deuce rule is activated')
+
 
 if __name__ == '__main__':
     unittest.main()

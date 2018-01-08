@@ -23,3 +23,6 @@ class Tennis(object):
     def player2_win_point(self):
         """Method to invoke when the player 1 win the point."""
         self._win_point((0, 1))
+
+    def deuce_activated(self):
+        pass
